@@ -1,9 +1,18 @@
 package com.example.todolist.model;
 
 public class Todo {
+    private int id;
     private String title;
     private String description;
     private boolean completed = false;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getTitle() {
         return title;

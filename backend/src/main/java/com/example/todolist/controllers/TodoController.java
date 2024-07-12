@@ -1,7 +1,7 @@
 package com.example.todolist.controllers;
 
 import com.example.todolist.model.Todo;
-import com.example.todolist.services.TodoService;
+import com.example.todolist.repositories.TodoRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,20 +14,20 @@ import java.util.List;
 @RestController
 public class TodoController {
 
-    private final TodoService todoService;
+    private final TodoRepository todoRepository;
 
-    public TodoController(TodoService todoService) {
-        this.todoService = todoService;
+    public TodoController(TodoRepository todoRepository) {
+        this.todoRepository = todoRepository;
     }
 
     @GetMapping("/todos")
-    public List<Todo> getTodolist() {
-        return todoService.getTodoList();
+    public List<Todo> getTodos() {
+        return todoRepository.getTodos();
     }
 
     @PostMapping("/todos")
     public ResponseEntity<Todo> addTodo(@RequestBody Todo todo) {
-        todoService.addTodo(todo);
+        todoRepository.storeTodo(todo);
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(todo);
