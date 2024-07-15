@@ -27,7 +27,11 @@ public class TodoController {
 
     @PostMapping("/todos")
     public ResponseEntity<Todo> addTodo(@RequestBody Todo todo) {
-        todoRepository.storeTodo(todo);
+        todoRepository.storeTodo(
+                todo.getTitle(),
+                todo.getDescription(),
+                todo.isCompleted()
+        );
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(todo);

@@ -1,6 +1,10 @@
 package com.example.todolist.model;
 
+import org.springframework.data.annotation.Id;
+
 public class Todo {
+
+    @Id
     private int id;
     private String title;
     private String description;
